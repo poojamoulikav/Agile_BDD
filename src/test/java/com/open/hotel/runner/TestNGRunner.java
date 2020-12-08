@@ -12,7 +12,7 @@ import io.cucumber.testng.CucumberOptions;
 				"html:target/cucumberReport",
 				"json:target/cucumberReport/cucumber.json",
 		},
-		tags={"@SmokeTest"},
+		tags={"@all"},
 		features = "src/test/java/com/open/hotel/features",
 		glue={"com.open.hotel.stepdefinitions"},
 		strict = true,
