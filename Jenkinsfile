@@ -4,11 +4,11 @@ pipeline{
     
     agent any
         stage ('Compile Stage') {
-                    sh 'mvn clean install'
+                    sh "${mavenHome}/bin/mvn clean install"
         }
 
     stage ('Test Stage') {
-                    sh 'mvn test'
+                    sh "${mavenHome}/bin/mvn test"
         }
 
         stage ('Cucumber Reports') {
