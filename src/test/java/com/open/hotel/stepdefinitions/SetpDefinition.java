@@ -67,7 +67,7 @@ public class SetpDefinition {
 				options.setExperimentalOption("excludeSwitches", Arrays.asList("disable-popup-blocking"));
 				this.driver = new ChromeDriver(options);
 			}
-		} else if (ExecutionMode.contains("Remote")) {
+		} else if (ExecutionMode.contains("Grid")) {
 			// RemoteWebDriver driver = null;
 			DesiredCapabilities cap = null;
 			if (browser.toUpperCase().contains("CH")) {
@@ -80,7 +80,12 @@ public class SetpDefinition {
 				cap = DesiredCapabilities.chrome();
 				cap.setCapability(ChromeOptions.CAPABILITY, options);
 				cap.setBrowserName("chrome");
-				cap.setPlatform(Platform.LINUX);
+				String RemoteType = Config.properties.getProperty("RemoteType");
+				if (RemoteType.contains("VM")) {
+					cap.setPlatform(Platform.WINDOWS);
+				} else if (RemoteType.contains("AWS")) {
+					cap.setPlatform(Platform.LINUX);
+				}
 			}
 			try {
 				driver = new RemoteWebDriver(new URL(Config.properties.getProperty("RemoteURL")), cap);

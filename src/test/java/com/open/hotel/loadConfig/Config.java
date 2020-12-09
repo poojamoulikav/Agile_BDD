@@ -17,8 +17,8 @@ public class Config {
 
         properties = new Properties();
         try{
-            File directory = new File (".");
-            String rootFolderName = directory.getCanonicalPath();
+            //File directory = new File (".");
+            String rootFolderName = System.getProperty("user.dir");
             String configFilePath = rootFolderName + "\\src\\test\\resources\\config";
             FileInputStream fis = new FileInputStream( configFilePath + "\\Sys.properties");
             properties.load(fis);
