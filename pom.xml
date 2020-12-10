@@ -8,7 +8,12 @@
   <packaging>jar</packaging>
 
 	<properties>
-		<testng.threadcount>1</testng.threadcount>
+		<testng.threadcount>$testng.threadcount</testng.threadcount>
+		<Environment>$Environment</Environment>
+		<Browser>$Browser</Browser>
+		<ExecutionMode>$ExecutionMode</ExecutionMode>
+		<RemoteType>$RemoteType</RemoteType>
+		<RemoteURL>$RemoteURL</RemoteURL>
 	</properties>
    <dependencies>
 

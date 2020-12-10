@@ -49,8 +49,22 @@ public class SetpDefinition {
 
 	@Given("Open Browser")
 	public void Open_Browser() {
-		String browser = Config.properties.getProperty("Browser");
-		String ExecutionMode = Config.properties.getProperty("ExecutionMode");
+		String browser = System.getProperty("Browser");
+		if (browser == null) {
+			browser = Config.properties.getProperty("Browser");
+		}
+		String ExecutionMode = System.getProperty("ExecutionMode");
+		if (ExecutionMode == null) {
+			ExecutionMode = Config.properties.getProperty("ExecutionMode");
+		}
+		String RemoteType = System.getProperty("RemoteType");
+		if (RemoteType == null) {
+			RemoteType = Config.properties.getProperty("RemoteType");
+		}
+		String RemoteURL = System.getProperty("RemoteURL");
+		if (RemoteURL == null) {
+			RemoteURL = Config.properties.getProperty("RemoteURL");
+		}
 		String driverPath = System.getProperty("user.dir");
 		if(ExecutionMode.contains("Local")) {
 			if (browser.toUpperCase().contains("CH")) {
@@ -80,7 +94,6 @@ public class SetpDefinition {
 				cap = DesiredCapabilities.chrome();
 				cap.setCapability(ChromeOptions.CAPABILITY, options);
 				cap.setBrowserName("chrome");
-				String RemoteType = Config.properties.getProperty("RemoteType");
 				if (RemoteType.contains("VM")) {
 					cap.setPlatform(Platform.WINDOWS);
 				} else if (RemoteType.contains("AWS")) {
@@ -88,7 +101,7 @@ public class SetpDefinition {
 				}
 			}
 			try {
-				driver = new RemoteWebDriver(new URL(Config.properties.getProperty("RemoteURL")), cap);
+				driver = new RemoteWebDriver(new URL(RemoteURL), cap);
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
@@ -97,11 +110,9 @@ public class SetpDefinition {
 		search = new Search(this.driver, this.testCaseName, this.testCaseID);
 	}
 
-
-
-	@Given("User is able Launch the hotel application using {string}")
-	public void user_is_able_Launch_the_hotel_application_using(String arg1) throws InterruptedException {
-		login.lauchApplication(arg1);
+	@Given("User is able Launch the hotel application")
+	public void user_is_able_Launch_the_hotel_application () throws InterruptedException {
+		login.lauchApplication();
 	}
 	
 	@When("User enters the {string} and {string} and Click LogIn button")

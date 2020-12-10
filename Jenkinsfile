@@ -15,7 +15,7 @@ stage ('Compile Stage')
 
 stage ('Test Stage')
     {
-        sh "${mavenHome}/bin/mvn test"
+        sh "${mavenHome}/bin/mvn test -DEnvironment=${ExecutionEnvironment} -DBrowser=${Browser} -DExecutionMode=${ExecutionMode} -DRemoteType=${RemoteType} -DRemoteURL=${RemoteURL} -Dcucumber.filter.tags=${Tags} -Dtestng.threadcount=${Threads}"
     }
 
 stage ('Cucumber Reports')
