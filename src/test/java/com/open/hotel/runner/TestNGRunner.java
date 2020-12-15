@@ -23,7 +23,7 @@ import java.util.List;
 		},
 		tags={"@all"},
 		features = "src/test/java/com/open/hotel/features",
-		glue={"com.open.hotel.stepdefinitions"},
+		glue={"com.open.hotel.stepdefinitions", "com.open.hotel.hooks"},
 		strict = true,
 		dryRun = false
 )

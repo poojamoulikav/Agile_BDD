@@ -3,7 +3,7 @@ package com.open.hotel.stepdefinitions;
 import com.open.hotel.loadConfig.Config;
 import com.open.hotel.pages.Login;
 import com.open.hotel.pages.Search;
-import com.open.hotel.uiUtils.UIUtils;
+import com.open.hotel.threadVariables.VariableManager;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -24,28 +24,9 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.*;
 
-public class SetpDefinition {
+public class LoginDefinition {
 	
 	public Login login;
-	public Search search;
-
-	String testCaseName = null;
-	String testCaseID = null;
-	WebDriver driver = null;
-
-	@Before()
-	public void beforeScenario(Scenario scenario){
-		testCaseName = scenario.getName().split(":")[1];
-		testCaseID = scenario.getName().split(":")[0];
-	}
-
-	@After()
-	public void afterScenario(Scenario scenario) throws ParseException {
-		if(driver != null){
-			driver.close();
-			driver.quit();
-		}
-	}
 
 	@Given("Open Browser")
 	public void Open_Browser() {
@@ -65,6 +46,7 @@ public class SetpDefinition {
 		if (RemoteURL == null) {
 			RemoteURL = Config.properties.getProperty("RemoteURL");
 		}
+		WebDriver driver;
 		String driverPath = System.getProperty("user.dir");
 		if(ExecutionMode.contains("Local")) {
 			if (browser.toUpperCase().contains("CH")) {
@@ -79,7 +61,8 @@ public class SetpDefinition {
 				options.addArguments("start-maximized");
 				options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 				options.setExperimentalOption("excludeSwitches", Arrays.asList("disable-popup-blocking"));
-				this.driver = new ChromeDriver(options);
+				driver = new ChromeDriver(options);
+				VariableManager.getInstance().getVariables().setVar("driver", driver);
 			}
 		} else if (ExecutionMode.contains("Grid")) {
 			// RemoteWebDriver driver = null;
@@ -102,12 +85,12 @@ public class SetpDefinition {
 			}
 			try {
 				driver = new RemoteWebDriver(new URL(RemoteURL), cap);
+				VariableManager.getInstance().getVariables().setVar("driver", driver);
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
 		}
-		login = new Login(this.driver, this.testCaseName, this.testCaseID);
-		search = new Search(this.driver, this.testCaseName, this.testCaseID);
+		login = new Login();
 	}
 
 	@Given("User is able Launch the hotel application")
@@ -124,19 +107,4 @@ public class SetpDefinition {
 	public void logout_application() throws Exception {
 		login.LogOut();
 	}
-
-	@And("user enters the required information and clicks the search button in search hotel page")
-	public void user_enters_the_required_information_in_search_hotel_page(DataTable dt) {
-		HashMap<String, String> val = new HashMap<String, String>();
-		List<List<String>> list  = dt.asLists(String.class);
-		List<Map<String, String>> map  = dt.asMaps(String.class, String.class);
-		if(list.get(0).size() != 2){
-			throw new RuntimeException("Failed data load");
-		}
-		for(int i=0; i<list.size();i++){
-			val.put(list.get(i).get(0), list.get(i).get(1));
-		}
-		search.enterRoomSearchInfo(val);
-	}
-
 }

@@ -1,6 +1,6 @@
 Feature: search room in hotel application
 
-  @all
+  @all1
   Scenario: 102:Search Hotel Room
     Given Open Browser
     Given User is able Launch the hotel application

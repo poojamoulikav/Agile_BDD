@@ -2,6 +2,7 @@ package com.open.hotel.pages;
 
 import com.open.hotel.Logger.LoggerClass;
 import com.open.hotel.loadConfig.Config;
+import com.open.hotel.threadVariables.VariableManager;
 import com.open.hotel.uiUtils.UIUtils;
 import org.omg.CORBA.Environment;
 import org.openqa.selenium.WebDriver;
@@ -12,8 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class Login  extends UIUtils {
 
-	String testCaseName = null;
-	String testCaseID = null;
+	org.apache.log4j.Logger log = LoggerClass.getThreadLogger("Thread" + Thread.currentThread().getName(), VariableManager.getInstance().getVariables().getVar("testCaseID").toString());
 
 	WebDriver driver = null;
 	String pageName = "Login Page";
@@ -26,15 +26,11 @@ public class Login  extends UIUtils {
 	@FindBy(how =How.ID, using = "/html/body/table[2]/tbody/tr[1]/td[2]/a[4]")
 	WebElement LogOut;
 
-	public Login(WebDriver driver, String testCaseName, String testCaseID){
-		super(driver, testCaseName,testCaseID);
-		this.testCaseName = testCaseName;
-		this.testCaseID = testCaseID;
-		this.driver = driver;
+	public Login(){
+		this.driver = (WebDriver) VariableManager.getInstance().getVariables().getVar("driver");
 		PageFactory.initElements(this.driver, this);
 	}
 	public void lauchApplication() throws InterruptedException {
-		org.apache.log4j.Logger log = LoggerClass.getThreadLogger("Thread" + Thread.currentThread().getName(), testCaseID);
 		String Env = System.getProperty("Environment");
 		if (Env == null) {
 			Env = Config.properties.getProperty("Environment");
