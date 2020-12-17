@@ -1,6 +1,6 @@
 package com.open.hotel.runner;
 
-import com.open.hotel.loadConfig.Config;
+import com.open.hotel.config.Config;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -21,7 +21,7 @@ import java.util.List;
 				"html:target/cucumberReport",
 				"json:target/cucumberReport/cucumber.json",
 		},
-		tags={"@all"},
+		tags={"@RestServicePostCSV"},
 		features = "src/test/java/com/open/hotel/features",
 		glue={"com.open.hotel.stepdefinitions", "com.open.hotel.hooks"},
 		strict = true,

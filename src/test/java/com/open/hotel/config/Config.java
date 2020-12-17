@@ -1,4 +1,4 @@
-package com.open.hotel.loadConfig;
+package com.open.hotel.config;
 
 import java.io.File;
 import java.io.FileInputStream;

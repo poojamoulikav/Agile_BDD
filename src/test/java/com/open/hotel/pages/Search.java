@@ -1,6 +1,6 @@
 package com.open.hotel.pages;
 
-import com.open.hotel.Logger.LoggerClass;
+import com.open.hotel.logger.LoggerClass;
 import com.open.hotel.threadVariables.VariableManager;
 import com.open.hotel.uiUtils.UIUtils;
 
@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 

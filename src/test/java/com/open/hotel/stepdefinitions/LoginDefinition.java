@@ -1,14 +1,8 @@
 package com.open.hotel.stepdefinitions;
 
-import com.open.hotel.loadConfig.Config;
+import com.open.hotel.config.Config;
 import com.open.hotel.pages.Login;
-import com.open.hotel.pages.Search;
 import com.open.hotel.threadVariables.VariableManager;
-import io.cucumber.datatable.DataTable;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -21,7 +15,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.ParseException;
 import java.util.*;
 
 public class LoginDefinition {
