@@ -28,7 +28,8 @@ public class RestServices {
             String url = Config.properties.getProperty("EndPointURL_" + region + "_" + customerName);
             log.info("end point url - " + url + endPoint);
             CloseableHttpClient client = HttpClients.createDefault();
-            HttpPost httpPost = new HttpPost(url + endPoint);
+            String fullURl = url + endPoint;
+            HttpPost httpPost = new HttpPost(fullURl);
             StringEntity entity = new StringEntity(jsonRequest);
             httpPost.setEntity(entity);
             if (url != null){
