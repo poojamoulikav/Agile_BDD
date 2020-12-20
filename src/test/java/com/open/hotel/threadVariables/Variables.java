@@ -14,6 +14,7 @@ public class Variables {
         return returnValue;
     }
     public void setVar(Object key, Object value) {
+
         var.put(key, value);
     }
 }

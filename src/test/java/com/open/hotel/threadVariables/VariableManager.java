@@ -10,10 +10,12 @@ public class VariableManager {
 
     ThreadLocal<Variables> variables = new ThreadLocal<Variables>();
     public void setVariables(Variables variable) {
+
         variables.set(variable);
     }
 
     public Variables getVariables() {
+
         return variables.get();
     }
 

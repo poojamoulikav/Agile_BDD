@@ -60,12 +60,12 @@ public class RestServices {
         String responseString = null;
         try {
             String region = Config.properties.getProperty("Environment");
-            String url = Config.properties.getProperty("EndPointURL_" + region + "_" + customerName);
-            log.info("end point url - " + url + endPoint);
+            String baseurl = Config.properties.getProperty("EndPointURL_" + region + "_" + customerName);
+            log.info("end point url - " + baseurl + endPoint);
             CloseableHttpClient httpClient = HttpClients.createDefault();
-            HttpGet httpGet = new HttpGet(url + endPoint);
+            HttpGet httpGet = new HttpGet(baseurl + endPoint);
 
-            if (url != null){
+            if (baseurl != null){
                 String header = Config.properties.getProperty("Header_" + region + "_" + customerName);
                 String[] headerValues = header.split(";");
                 for(int i = 0; i < headerValues.length; ++i) {
@@ -94,6 +94,8 @@ public class RestServices {
             JSONParser parser = new JSONParser();
             Object jsonObject = parser.parse(response);
             String result = JsonPath.read(jsonObject, jsonPath).toString();
+           /* Object dataObject = JsonPath.parse(response).read(jsonPath);
+            String result = dataObject.toString();*/
             return result;
         } catch (Exception var5) {
             log.info("Exception - " + var5);

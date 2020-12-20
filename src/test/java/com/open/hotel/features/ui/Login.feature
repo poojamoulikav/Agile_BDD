@@ -1,7 +1,7 @@
 
 Feature: login hotel application
 
-  @all
+  @Login
   Scenario: 101:login to the hotel application
     Given Open Browser
     Given User is able Launch the hotel application

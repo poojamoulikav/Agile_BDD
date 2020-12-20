@@ -4,9 +4,7 @@ import com.open.hotel.logger.LoggerClass;
 import com.open.hotel.config.Config;
 import com.open.hotel.threadVariables.VariableManager;
 import io.cucumber.java.Scenario;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -31,6 +29,7 @@ public class UIUtils {
             scenario.write("Thread ID:'" + Thread.currentThread().getId() + "' 'PASS' Entered value '" + value + "' in '" + elementName + "' text box");
             log.info("Thread ID:'" + Thread.currentThread().getId() + "' 'PASS' Entered value '" + value + "' in '" + elementName + "' text box");
         }catch(Exception e){
+            scenario.embed(((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES), "image/png");
             scenario.write("Thread ID:'" + Thread.currentThread().getId() + "' 'FAIL' " + e.getMessage());
             log.info("Thread ID:'" + Thread.currentThread().getId() + "' 'FAIL' " + e.getMessage());
             throw new RuntimeException(e);
@@ -47,6 +46,7 @@ public class UIUtils {
             scenario.write("Thread ID:'" + Thread.currentThread().getId() + "' 'PASS' Clicked on '" + elementName + "' button");
             log.info("Thread ID:'" + Thread.currentThread().getId() + "' 'PASS' Clicked on '" + elementName + "' button");
         }catch(Exception e){
+            scenario.embed(((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES), "image/png");
             scenario.write("Thred ID:'" + Thread.currentThread().getId() + "' 'FAIL' " + e.getMessage());
             log.info("Thred ID:'" + Thread.currentThread().getId() + "' 'FAIL' " + e.getMessage());
             throw new RuntimeException(e);

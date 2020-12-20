@@ -42,7 +42,6 @@ public class Login  extends UIUtils {
 	}
 
 	public void login(String userName, String password) throws Exception {
-
 		type(UserName, userName,"UserName", this.pageName);
 		type(Password, password,"Password", this.pageName);
 		clickElement(Login, "Login", this.pageName);
