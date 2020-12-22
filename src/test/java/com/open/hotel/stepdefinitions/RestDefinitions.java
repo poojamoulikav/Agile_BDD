@@ -13,7 +13,7 @@ import io.cucumber.java.en.When;
 import java.util.Map;
 
 public class RestDefinitions {
-    CSVData csvData = new CSVData();
+   /* CSVData csvData = new CSVData();
     Payload payLoad = new Payload();
     RestServices restServices = new RestServices();
     Assertions assertions = new Assertions();
@@ -68,9 +68,9 @@ public class RestDefinitions {
     }
 
     //Get Request Parameterization
-    @Given("Customer {string} Read the data from CSV {string} for testcase ID {string}")
-    public void customer_read_the_data_from_CSV_from_test_case_id(String customerName, String csvFileName, String testCaseID) {
-        Map <String, String> data = this.csvData.readData(csvFileName, testCaseID);
+    @Given("Customer {string} Read the data from given parameters")
+    public void customer_read_the_data_from_test_case_id(String customerName, DataTable dt) {
+        Map <String, String> data = this.tableData.convertDataTableValuesToList(dt);
         VariableManager.getInstance().getVariables().setVar("data", data);
         VariableManager.getInstance().getVariables().setVar("customerName", customerName);
     }
@@ -92,6 +92,6 @@ public class RestDefinitions {
         String response = VariableManager.getInstance().getVariables().getVar("response").toString();
         String actualValue = this.restServices.getValueFromJsonResponse(response, jsonPath);
         this.assertions.assertValues(nodeName, expectedValue, actualValue);
-    }
+    } */
 
 }

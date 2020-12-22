@@ -21,7 +21,7 @@ import java.util.List;
 				"html:target/cucumberReport",
 				"json:target/cucumberReport/cucumber.json",
 		},
-		tags={"@RestServicePostParamaterization"},
+		tags={"@RestServiceGetExcel"},
 		features = "src/test/java/com/open/hotel/features",
 		glue={"com.open.hotel.stepdefinitions", "com.open.hotel.hooks"},
 		strict = true,
