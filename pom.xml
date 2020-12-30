@@ -120,6 +120,20 @@
 		   <!-- <scope>compile</scope> -->
 	   </dependency>
 
+	   <!-- https://mvnrepository.com/artifact/com.jayway.restassured/rest-assured -->
+	   <dependency>
+		   <groupId>com.jayway.restassured</groupId>
+		   <artifactId>rest-assured</artifactId>
+		   <version>2.9.0</version>
+	   </dependency>
+
+	   <!-- https://mvnrepository.com/artifact/com.jayway.restassured/rest-assured -->
+	   <dependency>
+		   <groupId>com.jayway.restassured</groupId>
+		   <artifactId>json-schema-validator</artifactId>
+		   <version>2.4.1</version>
+	   </dependency>
+
 	   <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
 	   <dependency>
 		   <groupId>org.apache.poi</groupId>
